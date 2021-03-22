@@ -1,13 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect , useState} from "react";
 import { UserContext } from "../../providers/UserProvider";
 import { auth } from "../../firebase";
 import { Redirect } from "@reach/router";
+import { firestore } from "./../../firebase";
 
 
 function Profile() {
-    const user = useContext(UserContext)
+
+   
+
+       const user = useContext(UserContext);
+
     if( user === null || user === undefined) return (<Redirect noThrow to="/signIn"/>);
-    const {displayName, email, photoURL} = user;
+    const {displayName, email, photoURL, score} = user;
   return (
     <div className="container">
       <div className="row justify-content-center">
@@ -47,8 +52,7 @@ function Profile() {
         <div className="col-sm-8">
             <div className="card">
                 <div className="card-body">
-                    Highest Score: 5
-                    Latest Score: 10
+                    Recent Score: {score}
                 </div>
 
             </div>

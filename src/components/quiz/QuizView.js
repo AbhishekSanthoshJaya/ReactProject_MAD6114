@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "./../../style/quiz_view.css";
 import { UserContext } from "../../providers/UserProvider";
 import { Redirect } from "@reach/router";
+import {firestore} from "./../../firebase"
 
 
 function QuizView() {
@@ -44,6 +45,21 @@ function QuizView() {
     },
   ];
 
+  const updateScore = async() => {
+       const userRef = firestore.doc(`users/${user.uid}`);
+       try {
+         await userRef.set(
+           {
+             score,
+           },
+           { merge: true }
+         );
+       } catch (error) {
+         console.error("Error creating user document", error);
+       }
+       
+  }
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
@@ -58,6 +74,7 @@ function QuizView() {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
+      updateScore();
     }
   };
 

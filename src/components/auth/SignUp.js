@@ -1,8 +1,8 @@
-import React , {useState} from 'react'
+import React , {useState, useContext} from 'react'
 import { Link } from "@reach/router";
 import { signInWithGoogle, auth , generateUserDocument} from "./../../firebase";
-
-
+import { UserContext } from "../../providers/UserProvider";
+import { Redirect, navigate } from "@reach/router";
 
 function SignUp() {
 
@@ -23,6 +23,7 @@ function SignUp() {
             setEmail("");
             setPassword("");
             setDisplayName("");
+            navigate('/quiz')
      };
      const onChangeHandler = (event) => {
        const { name, value } = event.currentTarget;
@@ -34,6 +35,8 @@ function SignUp() {
          setDisplayName(value);
        }
      };
+
+    
     return (
       <>
         <div className="container">

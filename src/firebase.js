@@ -16,7 +16,6 @@ import "firebase/firestore";
 
  const provider = new firebase.auth.GoogleAuthProvider();
 
-
  export const generateUserDocument = async (user, additionalData) => {
    if (!user) return;
    const userRef = firestore.doc(`users/${user.uid}`);
