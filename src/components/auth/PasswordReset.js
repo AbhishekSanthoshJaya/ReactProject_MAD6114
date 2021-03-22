@@ -36,12 +36,12 @@ function PasswordReset() {
                 <div className="card-header">Password Reset</div>
                 <div className="card-body">
                   {emailHasBeenSent && (
-                    <div className="py-3 bg-green-400 w-full text-white text-center mb-3">
+                    <div className="text-success">
                       An email has been sent to you!
                     </div>
                   )}
                   {error !== null && (
-                    <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
+                    <div className="text-danger">
                       {error}
                     </div>
                   )}
@@ -61,7 +61,7 @@ function PasswordReset() {
                     <button
                       type="button"
                       className="btn btn-primary"
-                      onClick={() => sendResetEmail}
+                      onClick={sendResetEmail}
                     >
                       Reset
                     </button>
